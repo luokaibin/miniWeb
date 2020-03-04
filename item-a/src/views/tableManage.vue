@@ -122,7 +122,7 @@ export default {
           action: 'methodRun',
           funName: 'cancelIframeCover',
         },
-        'http://192.168.2.110:8080',
+        this.topOrgin,
       );
       this.dialogVisible = false;
     },
@@ -134,7 +134,7 @@ export default {
           action: 'methodRun',
           funName: 'setIframeCover',
         },
-        'http://192.168.2.110:8080',
+        this.topOrgin,
       );
     },
     pushFormData(data) {

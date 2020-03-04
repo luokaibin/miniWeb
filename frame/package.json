@@ -26,6 +26,7 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "prettier": "^1.18.2",
+    "terser-webpack-plugin": "^2.3.5",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

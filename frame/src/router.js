@@ -11,6 +11,21 @@ Router.prototype.push = function push(location) {
   return routerPush.call(this, location).catch(error => error);
 };
 
+const itemA = {
+  orgin:
+    process.env.NODE_ENV === 'production'
+      ? 'https://notes.jindll.com'
+      : 'http://192.168.2.110:8128',
+  pathName: '/itemA/',
+};
+const itemB = {
+  orgin:
+    process.env.NODE_ENV === 'production'
+      ? 'https://notes.jindll.com'
+      : 'http://192.168.2.110:8129',
+  pathName: '/itemB/',
+};
+
 export const menuRouter = [
   {
     path: '/',
@@ -22,7 +37,7 @@ export const menuRouter = [
         name: 'Index',
         component: template,
         meta: {
-          orgin: 'http://192.168.2.110:8128',
+          ...itemA,
           name: '首页',
           title: '欢迎使用',
           icon: 'fa fa-home',
@@ -47,7 +62,7 @@ export const menuRouter = [
         name: 'Table',
         component: template,
         meta: {
-          orgin: 'http://192.168.2.110:8128',
+          ...itemA,
           name: '表格管理',
           title: '表格管理',
           icon: 'fa fa-table',
@@ -59,7 +74,7 @@ export const menuRouter = [
         name: 'Chart',
         component: template,
         meta: {
-          orgin: 'http://192.168.2.110:8128',
+          ...itemA,
           name: '图表管理',
           title: '图表管理',
           icon: 'fa fa-bar-chart',
@@ -71,7 +86,7 @@ export const menuRouter = [
         name: 'Form',
         component: template,
         meta: {
-          orgin: 'http://192.168.2.110:8128',
+          ...itemA,
           name: '表单管理',
           title: '表单管理',
           icon: 'fa fa-file-text-o',
@@ -89,7 +104,7 @@ export const menuRouter = [
         path: '/account/index',
         name: 'Account',
         meta: {
-          orgin: 'http://192.168.2.110:8129',
+          ...itemB,
           name: '账户管理',
           title: '账户管理',
           icon: 'fa fa-user-plus',
@@ -138,7 +153,7 @@ const router = new Router({
           path: '/account/user',
           name: 'User',
           meta: {
-            orgin: 'http://192.168.2.110:8129',
+            ...itemB,
             name: '个人中心',
             title: '个人中心',
             auth: true,

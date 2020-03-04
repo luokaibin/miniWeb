@@ -1,6 +1,11 @@
 import Mock from 'Mock';
 import Cookies from 'Cookies';
 
+const topOrgin =
+  process.env.NODE_ENV === 'production'
+    ? 'https://notes.jindll.com'
+    : 'http://192.168.2.110:8127';
+
 export default {
   install(Vue) {
     Vue.mixin({
@@ -8,6 +13,7 @@ export default {
         return {
           Mock,
           Cookies,
+          topOrgin,
         };
       },
     });
@@ -17,6 +23,7 @@ export default {
 export const sendSuccessTip = {
   methods: {
     sendSuccessTip() {
+      console.log(this);
       top.postMessage(
         {
           source: 'content',
@@ -27,7 +34,7 @@ export const sendSuccessTip = {
             type: 'success',
           },
         },
-        'http://192.168.2.110:8080',
+        topOrgin,
       );
     },
   },

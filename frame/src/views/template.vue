@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-      src: 'http://192.168.2.110:8081',
+      src: undefined,
       isLoadIframe: false, // Iframe是否加载完成
       isCoverIframe: false, // Iframe是否全屏
     };
@@ -55,22 +55,26 @@ export default {
     sendmessage(msg) {
       const content = this.getIframe();
       msg.source = 'main';
-      content.postMessage(msg, this.src);
+      const {
+        meta: { orgin },
+      } = this.$route;
+      content.postMessage(msg, orgin);
     },
     postMsg() {
       this.isLoadIframe = true;
       this.init();
     },
     init() {
+      console.log('测试是否打印');
       const {
         path,
         name,
-        meta: { orgin },
+        meta: { orgin, pathName },
       } = this.$route;
-      if (this.src === orgin) {
+      if (this.src === `${orgin}${pathName}`) {
         this.sendmessage({ path, name });
       } else {
-        this.src = orgin;
+        this.src = `${orgin}${pathName}`;
       }
     },
     // 设置Iframe全屏
